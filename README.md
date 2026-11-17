@@ -71,6 +71,6 @@ Result: containers are disposable, volumes hold the data.
 ## Roadmap
 
 - [x] Healthchecks
-- [ ] Non-root container user
+- [x] Non-root container user
 - [ ] `.env` configuration
 - [ ] CI with GitHub Actions (build on every push)
