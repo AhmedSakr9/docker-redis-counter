@@ -7,10 +7,11 @@ cache = redis.Redis(host=os.getenv("REDIS_HOST", "redis"), port=6379)
 class Handler(BaseHTTPRequestHandler):
     def do_GET(self):
         print("Request for:", self.path, flush=True)
-        if self.path != "/":
-            self.send_response(404)
-            self.end_headers()
-            return
+        if self.path == "/health":
+             self.send_response(200)
+             self.end_headers()
+             self.wfile.write(b"ok")
+             return
         visits = cache.incr("hits")
         message = f"Hello DevOps! This page was visited {visits} times.\n"
         self.send_response(200)
