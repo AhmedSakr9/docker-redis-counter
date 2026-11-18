@@ -1,0 +1,41 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the code
+        uses: actions/checkout@v4
+
+      - name: Create .env from the template
+        run: cp .env.example .env
+
+      - name: Build and start the stack
+        run: docker compose up -d --build
+
+      - name: Wait for the app to become healthy
+        run: |
+          for i in $(seq 1 15); do
+            if curl -fs localhost:5000/health; then exit 0; fi
+            sleep 2
+          done
+          docker compose logs
+          exit 1
+
+      - name: Check the counter works
+        run: |
+          curl -fs localhost:5000
+          curl -fs localhost:5000
+
+      - name: Show logs on failure
+        if: failure()
+        run: docker compose logs
+
+      - name: Tear down
+        if: always()
+        run: docker compose down -v
