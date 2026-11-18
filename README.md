@@ -31,7 +31,7 @@ Browser -> web (Python, :5000) -> redis (:6379) -> volume redis-data
 ## Run it
 
 ```bash
-git clone git@github.com:AhmedSakr9/docker-redis-counter.git
+git clone https://github.com/AhmedSakr9/docker-redis-counter.git
 cd docker-redis-counter
 docker compose up -d --build
 curl localhost:5000
