@@ -1,5 +1,5 @@
 # Docker Redis Counter: Hands-On Lab
-
+![CI](https://github.com/AhmedSakr9/docker-redis-counter/actions/workflows/ci.yml/badge.svg)
 A hands-on containerization lab: a Python web app with a Redis backend,
 orchestrated with Docker Compose, with persistent storage and documented
 failure scenarios.
@@ -73,4 +73,4 @@ Result: containers are disposable, volumes hold the data.
 - [x] Healthchecks
 - [x] Non-root container user
 - [x] `.env` configuration
-- [ ] CI with GitHub Actions (build on every push)
+- [x] CI with GitHub Actions (build on every push)
